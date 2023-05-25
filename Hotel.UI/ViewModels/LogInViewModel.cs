@@ -14,13 +14,9 @@ namespace Hotel.UI.ViewModels
     public partial class LogInViewModel : ObservableObject
     {
         private readonly IUserService _userService;
-        private readonly IRoomService _roomService;
-        private readonly IBookingDataService _bookingDataService;
 
-        public LogInViewModel(IBookingDataService bookingDataService, IRoomService roomService, IUserService userService)
+        public LogInViewModel(IUserService userService)
         {
-            _bookingDataService = bookingDataService;
-            _roomService = roomService;
             _userService = userService;
         }
 
@@ -62,6 +58,14 @@ namespace Hotel.UI.ViewModels
         public void ClearOutput()
         {
             Output = string.Empty;
+        }
+
+        [RelayCommand]
+        public async void SignUpClicked() => await GoToSignUp();
+
+        public async Task GoToSignUp()
+        {
+            await Shell.Current.GoToAsync(nameof(SignUp));
         }
     }
 }

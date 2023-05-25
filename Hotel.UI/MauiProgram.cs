@@ -139,11 +139,13 @@ namespace Hotel.UI
         private static void SetupViewModels(IServiceCollection services)
         {
             services.AddTransient<LogInViewModel>();
+            services.AddTransient<SignUpViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
         {
             services.AddTransient<LogIn>();
+            services.AddTransient<SignUp>();
             services.AddTransient<Home>();
         }
     }
