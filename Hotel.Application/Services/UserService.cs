@@ -45,6 +45,12 @@ namespace Hotel.Application.Services
             return await _userRepository.GetByIdAsync(id);
         }
 
+        public async Task<bool> ValidateName(string login, string password)
+        {
+            var user = await _userRepository.FirstOrDefaultAsync((user) => user.Login == login);
+            return user != null && user.Password == password;
+        }
+
         public Task GetConnections()
         {
             _unitOfWork.UserRepository.ListAllAsync();

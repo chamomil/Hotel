@@ -28,6 +28,5 @@ namespace Hotel.Domain.Abstractions
 
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken
             cancellationToken = default);
-
     }
 }

@@ -143,7 +143,8 @@ namespace Hotel.UI
 
         private static void SetupPages(IServiceCollection services)
         {
-            services.AddSingleton<LogIn>();
+            services.AddTransient<LogIn>();
+            services.AddTransient<Home>();
         }
     }
 }

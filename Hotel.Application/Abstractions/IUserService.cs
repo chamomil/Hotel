@@ -9,5 +9,6 @@ namespace Hotel.Application.Abstractions
 {
     public interface IUserService : IBaseService<User>
     {
+        Task<bool> ValidateName(string login, string password);
     }
 }

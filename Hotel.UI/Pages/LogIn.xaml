@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hotel.UI.Pages.LogIn"
              xmlns:models="clr-namespace:Hotel.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Hotel.UI.Pages.LogIn"
              x:DataType="models:LogInViewModel">
+    
+    
     <ScrollView
         BackgroundColor="#AFA8FB">
         <VerticalStackLayout
@@ -36,20 +39,35 @@
                         Placeholder="username"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD"/>
+                        TextColor="#6963AD"
+                        Text="{Binding Username}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
+                    </Entry>
 
                     <Entry 
                         Placeholder="password"
                         BackgroundColor="White"
-                        WidthRequest="250"/>
+                        WidthRequest="250"
+                        TextColor="#6963AD"
+                        Text="{Binding Password}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
+                    </Entry>
 
                     <Button 
                         Text="Log in"
-                        WidthRequest="250"/>
+                        WidthRequest="250"
+                        Command="{Binding LogInClickedCommand}"/>
 
                     <Label 
                         TextColor="#AD2D1C"
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="Center"
+                        Text="{Binding Output}"/>
 
                 </VerticalStackLayout>
             </Frame>
