@@ -25,7 +25,8 @@
             <Button 
                 Text="Menu"
                 HorizontalOptions="Start"
-                Margin="10"/>
+                Margin="10"
+                Command="{Binding MenuClickedCommand}"/>
             <Grid BackgroundColor="White"
                   Margin="40"
                   Padding="20"

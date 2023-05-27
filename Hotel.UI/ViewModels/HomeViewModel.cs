@@ -83,5 +83,17 @@ namespace Hotel.UI.ViewModels
                 Rooms = new();
             });
         }
+
+        [RelayCommand]
+        public async void MenuClicked() => await GoToMenu();
+
+        public async Task GoToMenu()
+        {
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "UserId", UserId }
+            };
+            await Shell.Current.GoToAsync(nameof(Menu), parameters);
+        }
     }
 }
