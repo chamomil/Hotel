@@ -85,6 +85,9 @@
 	  <MauiXaml Update="Pages\Menu.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Profile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\RoomDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

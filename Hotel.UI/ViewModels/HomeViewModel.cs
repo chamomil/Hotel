@@ -44,7 +44,7 @@ namespace Hotel.UI.ViewModels
 
         public async Task GetRoom()
         {
-            if (FirstDate > SecondDate || FirstDate < DateTime.Today)
+            if (FirstDate.Date > SecondDate.Date || FirstDate.Date < DateTime.Today)
             {
                 return;
             }

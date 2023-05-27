@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Hotel.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converter="clr-namespace:Hotel.UI.ValueConverters"
+             x:DataType="model:ProfileViewModel"
+             x:Class="Hotel.UI.Pages.Profile">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="NavigatedTo"
+                                        Command="{Binding LoadInfoCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <converter:OptionalFieldsConverter x:Key="OptionalField"/>
+    </ContentPage.Resources>
+    <ScrollView
+        BackgroundColor="#AFA8FB">
+        <VerticalStackLayout
+            VerticalOptions="Center">
+            <Frame 
+                BackgroundColor="White"
+                HorizontalOptions="Center"
+                MinimumWidthRequest="300"
+                BorderColor="#6963AD"
+                Margin="0,30,0,30"
+                MinimumHeightRequest="250">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{Binding CurrentUser.Name, StringFormat='Name: {0}'}" TextColor="#6963AD"/>
+                    <Label Text="{Binding CurrentUser.Surname, StringFormat='Surname: {0}'}" TextColor="#6963AD"/>
+                    <Label Text="{Binding CurrentUser.FathersName, Converter={StaticResource OptionalField}, StringFormat='Fathers name: {0}'}" TextColor="#6963AD"/>
+                    <Label Text="{Binding CurrentUser.Login, StringFormat='Login: {0}'}" TextColor="#6963AD"/>
+                    <Label Text="{Binding CurrentUser.DateOfBirth.Date, StringFormat='Date of birth: {0}'}" TextColor="#6963AD"/>
+                    <Label Text="{Binding CurrentUser.Comment, Converter={StaticResource OptionalField}, StringFormat='Additional info: {0}'}" TextColor="#6963AD"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

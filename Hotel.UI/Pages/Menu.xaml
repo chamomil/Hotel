@@ -7,13 +7,13 @@
     <ScrollView BackgroundColor="White">
         <VerticalStackLayout 
             HorizontalOptions="Center"
-            Spacing="30">
+            Spacing="30"
+            Padding="0,90,0,30">
             <Label 
                 Text="Menu"
                 TextColor="#6963AD"
                 HorizontalOptions="Center"
-                FontSize="Header"
-                Padding="0,90,0,0"/>
+                FontSize="Header"/>
             
             <Button
                 Text="Book a room"
@@ -32,7 +32,16 @@
                 BorderColor="#6963AD"
                 WidthRequest="300"
                 BorderWidth="1.5"/>
-            
+
+            <Button
+                Text="My profile"
+                TextColor="#6963AD"
+                FontSize="Medium"
+                Command="{Binding MyProfileClickedCommand}"
+                BorderColor="#6963AD"
+                WidthRequest="300"
+                BorderWidth="1.5"/>
+
             <Button
                 Text="Log Out"
                 TextColor="#6963AD"

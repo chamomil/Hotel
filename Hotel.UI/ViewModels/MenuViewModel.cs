@@ -46,5 +46,17 @@ namespace Hotel.UI.ViewModels
             };
             await Shell.Current.GoToAsync(nameof(BookingsList), parameters);
         }
+
+        [RelayCommand]
+        public async void MyProfileClicked() => await GoToProfile();
+
+        public async Task GoToProfile()
+        {
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "UserId", UserId }
+            };
+            await Shell.Current.GoToAsync(nameof(Profile), parameters);
+        }
     }
 }

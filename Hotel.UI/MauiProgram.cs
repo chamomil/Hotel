@@ -150,6 +150,7 @@ namespace Hotel.UI
             services.AddTransient<RoomDetailsViewModel>();
             services.AddTransient<MenuViewModel>();
             services.AddTransient<BookingsListViewModel>();
+            services.AddTransient<ProfileViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
@@ -160,6 +161,7 @@ namespace Hotel.UI
             services.AddTransient<RoomDetails>();
             services.AddTransient<Menu>();
             services.AddTransient<BookingsList>();
+            services.AddTransient<Profile>();
         }
     }
 }
