@@ -66,5 +66,11 @@ namespace Hotel.Application.Services
             var user = await _userRepository.FirstOrDefaultAsync((user) => user.Login == login);
             return user == null;
         }
+
+        public async Task<int> GetUserIdByLogin(string login)
+        {
+            var user = await _userRepository.FirstOrDefaultAsync((user) => user.Login == login);
+            return user.Id;
+        }
     }
 }

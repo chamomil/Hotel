@@ -7,5 +7,7 @@ namespace Hotel.Application.Abstractions
         Task<bool> IsLoginAndPasswordValid(string login, string password);
 
         Task<bool> IsLoginAvailable(string login);
+
+        Task<int> GetUserIdByLogin(string login);
     }
 }

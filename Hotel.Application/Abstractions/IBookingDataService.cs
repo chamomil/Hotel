@@ -4,6 +4,6 @@ namespace Hotel.Application.Abstractions
 {
     public interface IBookingDataService : IBaseService<BookingData>
     {
-        Task<IEnumerable<BookingData>> GetSuperpowerBySuperhero(int id);
+        Task<IEnumerable<BookingData>> GetUserById(int id);
     }
 }

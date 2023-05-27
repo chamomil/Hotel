@@ -30,7 +30,12 @@ namespace Hotel.UI.ViewModels
             Output = string.Empty;
             if (await ValidationCheck())
             {
-                await Shell.Current.GoToAsync(nameof(Home));
+                int UserId = await _userService.GetUserIdByLogin(Username);
+                IDictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "User", UserId }
+                };
+                await Shell.Current.GoToAsync(nameof(Home), parameters);
             }
             else if (Output == string.Empty)
             {

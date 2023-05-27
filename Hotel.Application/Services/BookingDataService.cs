@@ -40,7 +40,7 @@ namespace Hotel.Application.Services
             return await _bookingDataRepository.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<BookingData>> GetSuperpowerBySuperhero(int id)
+        public async Task<IEnumerable<BookingData>> GetUserById(int id)
         {
             return await _bookingDataRepository.ListAsync((booking) => booking.UserId == id);
         }

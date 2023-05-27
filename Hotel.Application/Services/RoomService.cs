@@ -1,6 +1,7 @@
 ﻿using Hotel.Application.Abstractions;
 using Hotel.Domain.Abstractions;
 using Hotel.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace Hotel.Application.Services
 {
@@ -33,6 +34,13 @@ namespace Hotel.Application.Services
         public async Task<IEnumerable<Room>> GetAllAsync()
         {
             return await _roomRepository.ListAllAsync();
+        }
+
+        public async Task<IEnumerable<Room>> GetAvailableRooms(DateTime firstDate, DateTime lastDate)
+        {
+            var rooms = await _roomRepository.ListAsync((room) => room.Bookings.Count == 0 || !room.Bookings.Any((booking) => booking.DateOfLeaving > firstDate && booking.DateOfEntry < lastDate));
+
+            return rooms;
         }
 
         public async Task<Room> GetByIdAsync(int id)

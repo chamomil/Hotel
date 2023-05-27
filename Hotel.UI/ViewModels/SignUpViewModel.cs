@@ -54,9 +54,23 @@ namespace Hotel.UI.ViewModels
             }
             if (await _userService.IsLoginAvailable(Login))
             {
-                await _userService.AddAsync(new User() { Name = Name, Login = Login, Comment = Comment, DateOfBirth = Bday,
-                    FathersName = FathersName, Password = Password, Surname = Surname });
-                await Shell.Current.GoToAsync(nameof(Home));
+                var newUser = new User()
+                {
+                    Name = Name,
+                    Login = Login,
+                    Comment = Comment,
+                    DateOfBirth = Bday,
+                    FathersName = FathersName,
+                    Password = Password,
+                    Surname = Surname
+                };
+                await _userService.AddAsync(newUser);
+
+                IDictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "UserId", newUser.Id }
+                };
+                await Shell.Current.GoToAsync(nameof(Home), parameters);
             } else
             {
                 Output = $"Login '{Login}' is already taken";

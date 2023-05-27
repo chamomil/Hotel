@@ -63,23 +63,25 @@ namespace Hotel.UI
 
             IList<Room> rooms = new List<Room>() { };
             const int rooms_amount = 30;
+            int rank = 1; // 1 - regular, 2 - comfy, 3 - lux
+            int size = 1; // 1 - 1 bed, 2 - 2 people, 3 - 3 people
 
             for (int i = 0; i < rooms_amount; ++i)
             {
-                int rank = 1; // 1 - regular, 2 - comfy, 3 - lux
-                int size = 1; // 1 - 1 bed, 2 - 2 people, 3 - 3 people
+                if (size == 5)
+                {
+                    size = 1;
+                }
                 if (i >= 2 * rooms_amount / 3)
                 {
                     rank = 3;
-                    size = 3;
                 }
                 else if (i >= rooms_amount / 3)
                 {
                     rank = 2;
-                    size = 2;
                 }
 
-                rooms.Add(new Room() { Rank = rank, Size = size, IsAvailable = true });
+                rooms.Add(new Room() { Rank = rank, Size = size++, Number = i + 1});
             }
 
             foreach (Room room in rooms)
@@ -94,6 +96,9 @@ namespace Hotel.UI
                 new User() { Name = "Maksim", Surname = "Konovaliuk",
                     DateOfBirth = new DateTime(1968, 9, 3),
                     Login="maksiksay", Password = "1111"},
+                new User() { Name = "Maksim", Surname = "Konovaliuk",
+                    DateOfBirth = new DateTime(1968, 9, 3),
+                    Login="1", Password = "1"},
             };
 
             foreach (User user in users)
@@ -141,6 +146,7 @@ namespace Hotel.UI
         {
             services.AddTransient<LogInViewModel>();
             services.AddTransient<SignUpViewModel>();
+            services.AddTransient<HomeViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
