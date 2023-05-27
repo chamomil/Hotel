@@ -24,10 +24,10 @@ namespace Hotel.Application.Services
 
         public async Task<BookingData> DeleteAsync(int id)
         {
-            var power = await _bookingDataRepository.GetByIdAsync(id);
-            await _bookingDataRepository.DeleteAsync(power);
+            var booking = await _bookingDataRepository.GetByIdAsync(id, includesProperties: (booking) => booking.Room);
+            await _bookingDataRepository.DeleteAsync(booking);
             await _unitOfWork.SaveAllAsync();
-            return power;
+            return booking;
         }
 
         public async Task<IEnumerable<BookingData>> GetAllAsync()
@@ -37,7 +37,7 @@ namespace Hotel.Application.Services
 
         public async Task<BookingData> GetByIdAsync(int id)
         {
-            return await _bookingDataRepository.GetByIdAsync(id);
+            return await _bookingDataRepository.GetByIdAsync(id, includesProperties: (booking) => booking.Room);
         }
 
         public async Task<IEnumerable<BookingData>> GetUserById(int id)

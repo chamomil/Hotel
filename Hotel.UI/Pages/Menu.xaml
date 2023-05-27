@@ -14,6 +14,7 @@
                 HorizontalOptions="Center"
                 FontSize="Header"
                 Padding="0,90,0,0"/>
+            
             <Button
                 Text="Book a room"
                 TextColor="#6963AD"
@@ -22,6 +23,16 @@
                 BorderColor="#6963AD"
                 WidthRequest="300"
                 BorderWidth="1.5"/>
+            
+            <Button
+                Text="My bookings"
+                TextColor="#6963AD"
+                FontSize="Medium"
+                Command="{Binding MyBookingsClickedCommand}"
+                BorderColor="#6963AD"
+                WidthRequest="300"
+                BorderWidth="1.5"/>
+            
             <Button
                 Text="Log Out"
                 TextColor="#6963AD"

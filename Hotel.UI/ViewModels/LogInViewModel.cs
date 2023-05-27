@@ -33,7 +33,7 @@ namespace Hotel.UI.ViewModels
                 int UserId = await _userService.GetUserIdByLogin(Username);
                 IDictionary<string, object> parameters = new Dictionary<string, object>()
                 {
-                    { "User", UserId }
+                    { "UserId", UserId }
                 };
                 await Shell.Current.GoToAsync(nameof(Home), parameters);
             }

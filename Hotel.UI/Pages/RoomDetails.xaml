@@ -31,8 +31,18 @@
                     Text="Confirm booking"
                     BackgroundColor="#E3DBFF"
                     FontSize="Medium"
+                    IsVisible="{Binding IsConfirmation}"
+                    IsEnabled="{Binding IsConfirmation}"
                     Command="{Binding ConfirmClickedCommand}"
                 />
+                <Button 
+                        Text="Delete booking"
+                        TextColor="Red"
+                        BorderColor="Red"
+                        FontSize="Medium"
+                        IsVisible="{Binding IsDeletion}"
+                        IsEnabled="{Binding IsDeletion}"
+                        Command="{Binding DeleteClickedCommand}"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
     </ScrollView>

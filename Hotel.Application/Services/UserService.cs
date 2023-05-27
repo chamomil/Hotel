@@ -8,11 +8,13 @@ namespace Hotel.Application.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Room> _roomRepository;
 
         public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _userRepository = unitOfWork.UserRepository;
+            _roomRepository = unitOfWork.RoomRepository;
         }
 
         public async Task<User> AddAsync(User item)
@@ -37,7 +39,12 @@ namespace Hotel.Application.Services
 
         public async Task<User> GetByIdAsync(int id)
         {
-            return await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(id, includesProperties: (user) => user.BookedRooms);
+            foreach (var booking in user.BookedRooms)
+            {
+                booking.Room = await _roomRepository.FirstOrDefaultAsync(room => room.Id == booking.RoomId);
+            }
+            return user;
         }
 
         public async Task<bool> IsLoginAndPasswordValid(string login, string password)

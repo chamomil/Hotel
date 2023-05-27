@@ -45,7 +45,7 @@ namespace Hotel.Application.Services
 
         public async Task<Room> GetByIdAsync(int id)
         {
-            return await _roomRepository.GetByIdAsync(id);
+            return await _roomRepository.GetByIdAsync(id, includesProperties: (room) => room.Bookings);
         }
 
         public Task GetConnections()

@@ -29,9 +29,9 @@ namespace Hotel.Persistence.Repository
             return Task.CompletedTask;
         }
 
-        public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter, CancellationToken cancellationToken = default)
         {
-            return _entities.FirstOrDefaultAsync(filter, cancellationToken);
+            return await _entities.FirstOrDefaultAsync(filter, cancellationToken);
         }
 
         public async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default, params Expression<Func<T, object>>[]? includesProperties)
@@ -45,7 +45,7 @@ namespace Hotel.Persistence.Repository
                 }
             }
 
-            query.Where((e) => e.Id == id);
+            query = query.Where((e) => e.Id == id);
             return await query.FirstOrDefaultAsync(cancellationToken);
         }
 
