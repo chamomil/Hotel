@@ -10,6 +10,7 @@ namespace Hotel.UI
 
             Routing.RegisterRoute(nameof(Home), typeof(Home));
             Routing.RegisterRoute(nameof(SignUp), typeof(SignUp));
+            Routing.RegisterRoute(nameof(LogIn), typeof(LogIn));
         }
     }
 }

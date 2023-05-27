@@ -9,11 +9,11 @@
         <BackButtonBehavior IsEnabled="False" IsVisible="False"/>
     </Shell.BackButtonBehavior>
     <ScrollView
-        BackgroundColor="#AFA8FB">
+        BackgroundColor="#AFA8FB"
+        VerticalOptions="FillAndExpand">
         <VerticalStackLayout
             Spacing="25"
             Padding="50,0"
-            HeightRequest="700"
             VerticalOptions="Center">
 
             <Label
@@ -29,74 +29,116 @@
                 Padding="30"
                 Margin="30"
                 WidthRequest="310"
-                HeightRequest="300"
                 CornerRadius="10">
 
                 <VerticalStackLayout
                     VerticalOptions="Center"
                     Spacing="30">
 
+                    <Label
+                        Text="Sign up"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        TextColor="#6963AD"/>
+
                     <Entry 
                         Placeholder="Name"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding Name}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
 
                     <Entry 
                         Placeholder="Surname"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding Surname}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
 
                     <Entry 
                         Placeholder="Father's name (optional)"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding FathersName}">
                     </Entry>
 
                     <Entry 
                         Placeholder="Login"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding Login}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
 
                     <Entry 
                         Placeholder="Password"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding Password}">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                        </Entry.Behaviors>
                     </Entry>
 
-                    <DatePicker
-                        BackgroundColor="White"
-                        TextColor="#6963AD">
-                    </DatePicker>
+                    <HorizontalStackLayout
+                        WidthRequest="250">
+                        <Label
+                            VerticalOptions="Center"
+                            TextColor="#6963AD"
+                            Padding="0,0,10,0"
+                            Text="Date of Birth:"/>
+
+                        <DatePicker
+                            BackgroundColor="White"
+                            TextColor="#6963AD"
+                            WidthRequest="150"
+                            Date="{Binding Bday}"/>
+
+                    </HorizontalStackLayout>
 
                     <Entry 
                         Placeholder="Additional info (optional)"
                         BackgroundColor="White"
                         WidthRequest="250"
-                        TextColor="#6963AD">
+                        TextColor="#6963AD"
+                        Text="{Binding Comment}">
                     </Entry>
 
                     <Button 
                         Text="Sign up"
-                        WidthRequest="250"/>
+                        WidthRequest="250"
+                        Command="{Binding SignUpClickedCommand}"/>
 
                     <Label 
                         TextColor="#AD2D1C"
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="Center"
+                        Text="{Binding Output}"/>
 
                 </VerticalStackLayout>
             </Frame>
 
             <Button 
                 Text="Move to log in"
-                WidthRequest="300"/>
+                WidthRequest="300"
+                Margin="0,0,0,40"
+                Command="{Binding LogInClickedCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>

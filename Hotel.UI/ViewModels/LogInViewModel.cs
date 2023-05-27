@@ -2,12 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.UI.Pages;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.UI.ViewModels
 {
@@ -38,7 +32,7 @@ namespace Hotel.UI.ViewModels
             {
                 await Shell.Current.GoToAsync(nameof(Home));
             }
-            else if (Output == string.Empty) 
+            else if (Output == string.Empty)
             {
                 Output = "Incorrect input";
             }
@@ -47,8 +41,8 @@ namespace Hotel.UI.ViewModels
         private async Task<bool> ValidationCheck()
         {
             if (Username.Length > 0 && Password.Length > 0)
-            { 
-                return await _userService.ValidateName(Username, Password);
+            {
+                return await _userService.IsLoginAndPasswordValid(Username, Password);
             }
             Output = "Fields should be filled";
             return false;

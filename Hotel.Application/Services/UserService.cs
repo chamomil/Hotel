@@ -1,11 +1,6 @@
 ﻿using Hotel.Application.Abstractions;
 using Hotel.Domain.Abstractions;
 using Hotel.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.Application.Services
 {
@@ -45,7 +40,7 @@ namespace Hotel.Application.Services
             return await _userRepository.GetByIdAsync(id);
         }
 
-        public async Task<bool> ValidateName(string login, string password)
+        public async Task<bool> IsLoginAndPasswordValid(string login, string password)
         {
             var user = await _userRepository.FirstOrDefaultAsync((user) => user.Login == login);
             return user != null && user.Password == password;
@@ -64,6 +59,12 @@ namespace Hotel.Application.Services
             await _userRepository.UpdateAsync(item);
             await _unitOfWork.SaveAllAsync();
             return item;
+        }
+
+        public async Task<bool> IsLoginAvailable(string login)
+        {
+            var user = await _userRepository.FirstOrDefaultAsync((user) => user.Login == login);
+            return user == null;
         }
     }
 }

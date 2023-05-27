@@ -1,14 +1,11 @@
 ﻿using Hotel.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hotel.Application.Abstractions
 {
     public interface IUserService : IBaseService<User>
     {
-        Task<bool> ValidateName(string login, string password);
+        Task<bool> IsLoginAndPasswordValid(string login, string password);
+
+        Task<bool> IsLoginAvailable(string login);
     }
 }

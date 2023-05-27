@@ -30,7 +30,7 @@ namespace Hotel.UI
                 });
 
 #if DEBUG
-		    builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), AppInfo.Current.Name);
 
@@ -63,7 +63,7 @@ namespace Hotel.UI
 
             IList<Room> rooms = new List<Room>() { };
             const int rooms_amount = 30;
-            
+
             for (int i = 0; i < rooms_amount; ++i)
             {
                 int rank = 1; // 1 - regular, 2 - comfy, 3 - lux
@@ -72,13 +72,14 @@ namespace Hotel.UI
                 {
                     rank = 3;
                     size = 3;
-                } else if (i >= rooms_amount / 3)
+                }
+                else if (i >= rooms_amount / 3)
                 {
                     rank = 2;
                     size = 2;
-                }                
+                }
 
-                rooms.Add(new Room() { Rank = rank, Size = size, IsAvailable = true});
+                rooms.Add(new Room() { Rank = rank, Size = size, IsAvailable = true });
             }
 
             foreach (Room room in rooms)
@@ -87,7 +88,7 @@ namespace Hotel.UI
 
             IReadOnlyList<User> users = new List<User>()
             {
-                new User() { Name = "Michael", Surname = "Stick", 
+                new User() { Name = "Michael", Surname = "Stick",
                     DateOfBirth = new DateTime(1988, 12, 1), FathersName="tree",
                     Login="michst", Password = "stick999"},
                 new User() { Name = "Maksim", Surname = "Konovaliuk",
