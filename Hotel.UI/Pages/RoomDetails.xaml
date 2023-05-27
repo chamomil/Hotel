@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Hotel.UI.ViewModels"
+             xmlns:converter="clr-namespace:Hotel.UI.ValueConverters"
+             x:Class="Hotel.UI.Pages.RoomDetails"
+             x:DataType="models:RoomDetailsViewModel">
+    <ContentPage.Resources>
+        <converter:RankToStringConverter x:Key="RankToString"/>
+        <converter:SizeToStringConverter x:Key="SizeToString"/>
+        <converter:BookingToPriceConverter x:Key="BookingToPrice"/>
+    </ContentPage.Resources>
+    <ScrollView HorizontalScrollBarVisibility="Always">
+        <HorizontalStackLayout BackgroundColor="White">
+            <VerticalStackLayout
+            Margin="30"
+            Spacing="20">
+                <Label Text="{Binding BookingData.Room.Number, StringFormat='Room {0}'}"
+                   TextColor="#6963AD" FontSize="Header"/>
+                <Label Text="{Binding BookingData.Room.Number, Converter={StaticResource RankToString}, StringFormat='Rank: {0}'}"
+                   TextColor="#6963AD" FontSize="Title"/>
+                <Label Text="{Binding BookingData.Room.Size, Converter={StaticResource SizeToString}, StringFormat='Size: {0}'}" 
+                   TextColor="#6963AD" FontSize="Title"/>
+                <Label Text="{Binding BookingData.DateOfEntry.Date, StringFormat='Arrival date: {0}'}" 
+                   TextColor="#6963AD" FontSize="Title"/>
+                <Label Text="{Binding BookingData.DateOfLeaving, StringFormat='Leaving date: {0}'}" 
+                   TextColor="#6963AD" FontSize="Title"/>
+                <Label Text="{Binding BookingData, Converter={StaticResource BookingToPrice}, StringFormat='Total price: {0}$'}" 
+                   TextColor="#6963AD" FontSize="Header"/>
+                <Button 
+                    Text="Confirm booking"
+                    BackgroundColor="#E3DBFF"
+                    FontSize="Medium"
+                    Command="{Binding ConfirmClickedCommand}"
+                />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </ScrollView>
+</ContentPage>

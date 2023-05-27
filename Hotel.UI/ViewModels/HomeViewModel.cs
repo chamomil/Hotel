@@ -3,6 +3,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.Domain.Entities;
+using Hotel.UI.Pages;
+using Microsoft.Maui.Controls.Compatibility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,11 +19,13 @@ namespace Hotel.UI.ViewModels
     {
         private readonly IRoomService _roomService;
         private readonly IBookingDataService _bookingDataService;
+        private readonly IUserService _userService;
 
-        public HomeViewModel(IRoomService roomService, IBookingDataService bookingDataService)
+        public HomeViewModel(IRoomService roomService, IBookingDataService bookingDataService, IUserService userService)
         {
             _roomService = roomService;
             _bookingDataService = bookingDataService;
+            _userService = userService;
         }
 
         [ObservableProperty]
@@ -40,7 +44,7 @@ namespace Hotel.UI.ViewModels
 
         public async Task GetRoom()
         {
-            if (FirstDate >= SecondDate || FirstDate  < DateTime.Now)
+            if (FirstDate > SecondDate || FirstDate < DateTime.Today)
             {
                 return;
             }
@@ -52,6 +56,31 @@ namespace Hotel.UI.ViewModels
                 {
                     Rooms.Add(room);
                 }
+            });
+        }
+
+        [RelayCommand]
+        public async void ShowDetails(Room room) => await GoToRoomsDetails(room);
+
+        public async Task GoToRoomsDetails(Room room)
+        {
+            var user = await _userService.GetByIdAsync(UserId);
+            var booking = new BookingData() { DateOfEntry = FirstDate, DateOfLeaving = SecondDate, Room = room, User = user, RoomId = room.Id, UserId = UserId };
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "BookingData", booking }
+            };
+            await Shell.Current.GoToAsync(nameof(RoomDetails), parameters);
+        }
+
+        [RelayCommand]
+        public async void ChangeDate() => await ClearRooms();
+
+        public async Task ClearRooms()
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                Rooms = new();
             });
         }
     }

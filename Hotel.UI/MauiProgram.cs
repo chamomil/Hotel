@@ -112,7 +112,7 @@ namespace Hotel.UI
                 await unitOfWork.BookingDataRepository.AddAsync(new BookingData()
                 {
                     User = user,
-                    Room = rooms[k],
+                    Room = rooms[k++],
                     DateOfEntry = new DateTime(2023, 6, 6),
                     DateOfLeaving = new DateTime(2023, 6, 9),
                 });
@@ -147,6 +147,7 @@ namespace Hotel.UI
             services.AddTransient<LogInViewModel>();
             services.AddTransient<SignUpViewModel>();
             services.AddTransient<HomeViewModel>();
+            services.AddTransient<RoomDetailsViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
@@ -154,6 +155,7 @@ namespace Hotel.UI
             services.AddTransient<LogIn>();
             services.AddTransient<SignUp>();
             services.AddTransient<Home>();
+            services.AddTransient<RoomDetails>();
         }
     }
 }
