@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.Domain.Entities;
+using Hotel.UI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +35,19 @@ namespace Hotel.UI.ViewModels.Admin
             {
                 Users.Add(user);
             }
+        }
+
+        [RelayCommand]
+        public async void UserClicked(User user) => await GoToProfile(user);
+
+        public async Task GoToProfile(User user)
+        {
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "UserId", user.Id },
+                { "IsAdmin", true }
+            };
+            await Shell.Current.GoToAsync(nameof(Profile), parameters);
         }
     }
 }

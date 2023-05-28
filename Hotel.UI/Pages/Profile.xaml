@@ -42,7 +42,7 @@
                 BorderWidth="1.25"
                 Command="{Binding EditClickedCommand}"/>
             <Button 
-                Text="Delete profile and log out"
+                Text="Delete profile"
                 HorizontalOptions="Center"
                 MinimumWidthRequest="220"
                 BorderColor="Red"

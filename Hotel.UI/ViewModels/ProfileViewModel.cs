@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace Hotel.UI.ViewModels
 {
     [QueryProperty("UserId", "UserId")]
+    [QueryProperty("IsAdmin", "IsAdmin")]
     public partial class ProfileViewModel : ObservableObject
     {
         private readonly IUserService _userService;
@@ -23,6 +24,8 @@ namespace Hotel.UI.ViewModels
 
         [ObservableProperty]
         public int _userId;
+        [ObservableProperty]
+        public bool _isAdmin = false;
 
         [ObservableProperty]
         public User _currentUser = new();
@@ -54,7 +57,14 @@ namespace Hotel.UI.ViewModels
         public async Task DeleteAndLogOut()
         {
             await _userService.DeleteAsync(UserId);
-            await Shell.Current.GoToAsync(nameof(LogIn));
+            if (IsAdmin)
+            {
+                await Shell.Current.GoToAsync("../..");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync(nameof(LogIn));
+            }
         }
     }
 }

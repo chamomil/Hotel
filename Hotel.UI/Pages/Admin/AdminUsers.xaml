@@ -25,6 +25,10 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="entities:User">
                         <Frame Margin="5" WidthRequest="400"  BackgroundColor="White" BorderColor="#6963AD" MinimumHeightRequest="140">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type models:AdminUsersViewModel}}, 
+                                    Path=UserClickedCommand}" CommandParameter="{Binding}"/>
+                            </Frame.GestureRecognizers>
                             <VerticalStackLayout Spacing="5">
                                 <Label Text="{Binding Login, StringFormat='User {0}'}" TextColor="#6963AD" FontSize="20"/>
                                 <HorizontalStackLayout Spacing="20">
