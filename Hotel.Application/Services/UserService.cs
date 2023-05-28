@@ -26,7 +26,7 @@ namespace Hotel.Application.Services
 
         public async Task<User> DeleteAsync(int id)
         {
-            var user = await _userRepository.GetByIdAsync(id);
+            var user = await _userRepository.GetByIdAsync(id, includesProperties: (user) => user.BookedRooms);
             await _userRepository.DeleteAsync(user);
             await _unitOfWork.SaveAllAsync();
             return user;

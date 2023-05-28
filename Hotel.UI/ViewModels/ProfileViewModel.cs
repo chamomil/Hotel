@@ -47,5 +47,14 @@ namespace Hotel.UI.ViewModels
             };
             await Shell.Current.GoToAsync(nameof(EditProfile), parameters);
         }
+
+        [RelayCommand]
+        public async void DeleteClicked() => await DeleteAndLogOut();
+
+        public async Task DeleteAndLogOut()
+        {
+            await _userService.DeleteAsync(UserId);
+            await Shell.Current.GoToAsync(nameof(LogIn));
+        }
     }
 }

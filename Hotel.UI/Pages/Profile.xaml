@@ -47,7 +47,8 @@
                 MinimumWidthRequest="220"
                 BorderColor="Red"
                 TextColor="Red"
-                BorderWidth="1.25"/>
+                BorderWidth="1.25"
+                Command="{Binding DeleteClickedCommand}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
