@@ -26,10 +26,10 @@
                 HorizontalOptions="Start"
                 Margin="10"
                 Command="{Binding MenuClickedCommand}"/>
-
+            <Label Text="Bookings" HorizontalOptions="Center" FontSize="Large" TextColor="#6963AD"/>
             <CollectionView ItemsSource="{Binding Bookings}" HorizontalOptions="Center" Margin="10,50,10,20">
                 <CollectionView.EmptyView>
-                    <Label Text="You have no bookings yet" FontSize="Large"/>
+                    <Label Text="no bookings yet" FontSize="Large"/>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="entities:BookingData">

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Hotel.UI.ViewModels.Admin"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:entities="clr-namespace:Hotel.Domain.Entities;assembly=Hotel.Domain"
+             xmlns:converter="clr-namespace:Hotel.UI.ValueConverters"
+             x:DataType="models:AdminUsersViewModel"
+             x:Class="Hotel.UI.Pages.Admin.AdminUsers">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="NavigatedTo"
+                                        Command="{Binding LoadUsersCommand}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <converter:OptionalFieldsConverter x:Key="OptionalFields"/>
+    </ContentPage.Resources>
+    <ScrollView
+        BackgroundColor="#E3DBFF">
+        <VerticalStackLayout>
+            <Label Text="Users" HorizontalOptions="Center" FontSize="Large" Margin="10,50,10,10" TextColor="#6963AD"/>
+            <CollectionView ItemsSource="{Binding Users}" HorizontalOptions="Center" Margin="10,50,10,20">
+                <CollectionView.EmptyView>
+                    <Label Text="No users" FontSize="Large"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:User">
+                        <Frame Margin="5" WidthRequest="400"  BackgroundColor="White" BorderColor="#6963AD" MinimumHeightRequest="140">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Login, StringFormat='User {0}'}" TextColor="#6963AD" FontSize="20"/>
+                                <HorizontalStackLayout Spacing="20">
+                                    <Label Text="{Binding Name, StringFormat='Name: {0},'}" TextColor="#6963AD"/>
+                                    <Label Text="{Binding Surname, StringFormat='Surname: {0}'}" TextColor="#6963AD" HorizontalOptions="EndAndExpand"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding FathersName, Converter={StaticResource OptionalFields}, StringFormat='Fathers name: {0},'}" TextColor="#6963AD"/>
+                                <Label Text="{Binding DateOfBirth.Date, StringFormat='Date of birth: {0}'}" TextColor="#6963AD"/>
+                                <Label Text="{Binding Comment, Converter={StaticResource OptionalFields}, StringFormat='Additional info: {0}'}" TextColor="#6963AD"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

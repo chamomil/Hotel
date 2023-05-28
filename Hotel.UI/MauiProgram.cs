@@ -161,6 +161,7 @@ namespace Hotel.UI
             //-----------------admin---------------------
             services.AddTransient<AdminBookingsViewModel>();
             services.AddTransient<AdminMenuViewModel>();
+            services.AddTransient<AdminUsersViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
@@ -179,6 +180,7 @@ namespace Hotel.UI
             //------------admin--------------
             services.AddTransient<AdminBookings>();
             services.AddTransient<AdminMenu>();
+            services.AddTransient<AdminUsers>();
         }
     }
 }

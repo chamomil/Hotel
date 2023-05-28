@@ -25,6 +25,15 @@
                 BorderWidth="1.5"/>
 
             <Button
+                Text="See users"
+                TextColor="#6963AD"
+                FontSize="Medium"
+                Command="{Binding SeeUsersClickedCommand}"
+                BorderColor="#6963AD"
+                WidthRequest="300"
+                BorderWidth="1.5"/>
+
+            <Button
                 Text="Log Out"
                 TextColor="#6963AD"
                 FontSize="Medium"

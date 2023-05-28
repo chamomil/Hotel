@@ -21,6 +21,14 @@ namespace Hotel.UI.ViewModels.Admin
         }
 
         [RelayCommand]
+        public async void SeeUsersClicked() => await GoToUsers();
+
+        public async Task GoToUsers()
+        {
+            await Shell.Current.GoToAsync(nameof(AdminUsers));
+        }
+
+        [RelayCommand]
         public async void LogOutClicked() => await LogOut();
 
         public async Task LogOut()
