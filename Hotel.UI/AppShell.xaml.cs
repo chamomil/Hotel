@@ -1,4 +1,5 @@
 ﻿using Hotel.UI.Pages;
+using Hotel.UI.Pages.Admin;
 
 namespace Hotel.UI
 {
@@ -16,6 +17,7 @@ namespace Hotel.UI
             Routing.RegisterRoute(nameof(BookingsList), typeof(BookingsList));
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
             Routing.RegisterRoute(nameof(EditProfile), typeof(EditProfile));
+            Routing.RegisterRoute(nameof(AdminBookings), typeof(AdminBookings));
         }
     }
 }

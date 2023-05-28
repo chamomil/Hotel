@@ -9,7 +9,7 @@ namespace Hotel.Domain.Abstractions
             params Expression<Func<T, Object>>[]? includesProperties);
 
         Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken =
-            default);
+            default, params Expression<Func<T, object>>[]? includesProperties);
 
         Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> filter,
             CancellationToken cancellationToken = default,

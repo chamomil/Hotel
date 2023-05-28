@@ -6,7 +6,9 @@ using Hotel.Domain.Entities;
 using Hotel.Persistence.Data;
 using Hotel.Persistence.Repository;
 using Hotel.UI.Pages;
+using Hotel.UI.Pages.Admin;
 using Hotel.UI.ViewModels;
+using Hotel.UI.ViewModels.Admin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -100,6 +102,7 @@ namespace Hotel.UI
                     DateOfBirth = new DateTime(1968, 9, 3),
                     Login="1", Password = "1"},
             };
+            //------------------------------------admin: login - admin, password - admin--------------------------------------
 
             foreach (User user in users)
                 await unitOfWork.UserRepository.AddAsync(user);
@@ -146,24 +149,34 @@ namespace Hotel.UI
         {
             services.AddTransient<LogInViewModel>();
             services.AddTransient<SignUpViewModel>();
+
+            //-----------------user-------------------------
             services.AddTransient<HomeViewModel>();
             services.AddTransient<RoomDetailsViewModel>();
             services.AddTransient<MenuViewModel>();
             services.AddTransient<BookingsListViewModel>();
             services.AddTransient<ProfileViewModel>();
             services.AddTransient<EditProfileViewModel>();
+
+            //-----------------admin---------------------
+            services.AddTransient<AdminBookingsViewModel>();
         }
 
         private static void SetupPages(IServiceCollection services)
         {
             services.AddTransient<LogIn>();
             services.AddTransient<SignUp>();
+
+            //------------user--------------
             services.AddTransient<Home>();
             services.AddTransient<RoomDetails>();
             services.AddTransient<Menu>();
             services.AddTransient<BookingsList>();
             services.AddTransient<Profile>();
             services.AddTransient<EditProfile>();
+
+            //------------admin--------------
+            services.AddTransient<AdminBookings>();
         }
     }
 }

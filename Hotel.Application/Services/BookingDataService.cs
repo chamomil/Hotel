@@ -32,7 +32,7 @@ namespace Hotel.Application.Services
 
         public async Task<IEnumerable<BookingData>> GetAllAsync()
         {
-            return await _bookingDataRepository.ListAllAsync();
+            return await _bookingDataRepository.ListAllAsync(default, (booking) => booking.Room, (booking) => booking.User);
         }
 
         public async Task<BookingData> GetByIdAsync(int id)

@@ -18,13 +18,11 @@ namespace Hotel.UI.ViewModels
     public partial class HomeViewModel : ObservableObject
     {
         private readonly IRoomService _roomService;
-        private readonly IBookingDataService _bookingDataService;
         private readonly IUserService _userService;
 
-        public HomeViewModel(IRoomService roomService, IBookingDataService bookingDataService, IUserService userService)
+        public HomeViewModel(IRoomService roomService, IUserService userService)
         {
             _roomService = roomService;
-            _bookingDataService = bookingDataService;
             _userService = userService;
         }
 

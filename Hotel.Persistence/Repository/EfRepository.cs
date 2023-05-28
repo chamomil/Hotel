@@ -49,9 +49,19 @@ namespace Hotel.Persistence.Repository
             return await query.FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default, params Expression<Func<T, object>>[]? includesProperties)
         {
-            return await _entities.ToListAsync(cancellationToken);
+            IQueryable<T>? query = _entities.AsQueryable();
+
+            if (includesProperties.Any())
+            {
+                foreach (Expression<Func<T, object>>? property in includesProperties)
+                {
+                    query = query.Include(property);
+                }
+            }
+
+            return await query.ToListAsync(cancellationToken);
         }
 
         public async Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>>? filter, CancellationToken cancellationToken = default,

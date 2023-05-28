@@ -73,6 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Admin\AdminBookings.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\BookingsList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

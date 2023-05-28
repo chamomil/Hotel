@@ -9,6 +9,7 @@ namespace Hotel.UI.ViewModels
     public partial class SignUpViewModel : ObservableObject
     {
         private readonly IUserService _userService;
+        private const string ADMIN_LOGIN = "admin";
 
         public SignUpViewModel(IUserService userService)
         {
@@ -52,6 +53,11 @@ namespace Hotel.UI.ViewModels
                 Output = "Required fields should be filled";
                 return;
             }
+            if (Login == ADMIN_LOGIN)
+            {
+                Output = "Login 'admin' is not allowed";
+                return;
+            }
             if (await _userService.IsLoginAvailable(Login))
             {
                 var newUser = new User()
@@ -71,12 +77,10 @@ namespace Hotel.UI.ViewModels
                     { "UserId", newUser.Id }
                 };
                 await Shell.Current.GoToAsync(nameof(Home), parameters);
-            } else
-            {
-                Output = $"Login '{Login}' is already taken";
                 return;
             }
-            
+            Output = $"Login '{Login}' is already taken";
+            return;
         }
 
         [RelayCommand]
