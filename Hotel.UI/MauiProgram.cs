@@ -60,7 +60,12 @@ namespace Hotel.UI
             using var provider = services.BuildServiceProvider();
             var unitOfWork = provider.GetService<IUnitOfWork>();
 
-            await unitOfWork.RemoveDatbaseAsync();
+            if (unitOfWork != null)
+            {
+                return;
+            }
+
+            //await unitOfWork.RemoveDatbaseAsync();
             await unitOfWork.CreateDatabaseAsync();
 
             IList<Room> rooms = new List<Room>() { };
