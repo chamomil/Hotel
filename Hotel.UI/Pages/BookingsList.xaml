@@ -18,6 +18,9 @@
     <ScrollView 
         BackgroundColor="#AFA8FB">
         <CollectionView ItemsSource="{Binding Bookings}" HorizontalOptions="Center" Margin="10,50,10,0">
+            <CollectionView.EmptyView>
+                <Label Text="You have no bookings yet" FontSize="Large"/>
+            </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="entities:BookingData">
                     <Frame Margin="5" WidthRequest="400"  BackgroundColor="White" BorderColor="#6963AD" HeightRequest="140">

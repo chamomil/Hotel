@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.Domain.Entities;
+using Hotel.UI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,20 @@ namespace Hotel.UI.ViewModels
 
         public async Task GetUser()
         {
+            CurrentUser = new();
             CurrentUser = await _userService.GetByIdAsync(UserId);
+        }
+
+        [RelayCommand]
+        public async void EditClicked() => await GoToEditing();
+
+        public async Task GoToEditing()
+        {
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "UserId", UserId }
+            };
+            await Shell.Current.GoToAsync(nameof(EditProfile), parameters);
         }
     }
 }

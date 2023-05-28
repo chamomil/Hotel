@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Hotel.UI.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="models:EditProfileViewModel"
+             x:Class="Hotel.UI.Pages.EditProfile">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="NavigatedTo"
+                                        Command="{Binding LoadInfoCommand}"/>
+    </ContentPage.Behaviors>
+    <ScrollView
+        BackgroundColor="#AFA8FB">
+        <Frame
+                BackgroundColor="#E3DBFF"
+                BorderColor="#E3DBFF"
+                Padding="30"
+                Margin="30"
+                WidthRequest="310"
+                CornerRadius="10">
+
+            <VerticalStackLayout
+                    VerticalOptions="Center"
+                    Spacing="30">
+
+                <Label
+                        Text="Edit Info"
+                        HorizontalOptions="Center"
+                        FontSize="Medium"
+                        TextColor="#6963AD"/>
+
+                <Entry 
+                        Placeholder="Name"
+                        BackgroundColor="White"
+                        WidthRequest="250"
+                        TextColor="#6963AD"
+                        Text="{Binding CurrentUser.Name}">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry 
+                        Placeholder="Surname"
+                        BackgroundColor="White"
+                        WidthRequest="250"
+                        TextColor="#6963AD"
+                        Text="{Binding CurrentUser.Surname}">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="TextChanged"
+                                                            Command="{Binding ClearOutputCommand}"/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Entry 
+                        Placeholder="Father's name (optional)"
+                        BackgroundColor="White"
+                        WidthRequest="250"
+                        TextColor="#6963AD"
+                        Text="{Binding CurrentUser.FathersName}">
+                </Entry>
+
+                <HorizontalStackLayout
+                        WidthRequest="250">
+                    <Label
+                            VerticalOptions="Center"
+                            TextColor="#6963AD"
+                            Padding="0,0,10,0"
+                            Text="Date of Birth:"/>
+
+                    <DatePicker
+                            BackgroundColor="White"
+                            TextColor="#6963AD"
+                            WidthRequest="150"
+                            Date="{Binding CurrentUser.DateOfBirth}"/>
+
+                </HorizontalStackLayout>
+
+                <Entry 
+                        Placeholder="Additional info (optional)"
+                        BackgroundColor="White"
+                        WidthRequest="250"
+                        TextColor="#6963AD"
+                        Text="{Binding CurrentUser.Comment}">
+                </Entry>
+
+                <Button 
+                        Text="Submit"
+                        WidthRequest="250"
+                        Command="{Binding SubmitClickedCommand}"/>
+
+                <Label 
+                        TextColor="#AD2D1C"
+                        HorizontalOptions="Center"
+                        Text="{Binding Output}"/>
+
+            </VerticalStackLayout>
+        </Frame>
+    </ScrollView>
+</ContentPage>

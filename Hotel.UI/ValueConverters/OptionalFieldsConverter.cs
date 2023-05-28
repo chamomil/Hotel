@@ -11,7 +11,7 @@ namespace Hotel.UI.ValueConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null) return "None";
+            if (value == null || (string)value == string.Empty) return "None";
             return value;
         }
 

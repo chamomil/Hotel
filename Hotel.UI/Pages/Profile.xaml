@@ -16,7 +16,8 @@
     <ScrollView
         BackgroundColor="#AFA8FB">
         <VerticalStackLayout
-            VerticalOptions="Center">
+            VerticalOptions="Center" Spacing="10">
+            <Label Text="Info" HorizontalOptions="Center" FontSize="Large"/>
             <Frame 
                 BackgroundColor="White"
                 HorizontalOptions="Center"
@@ -33,6 +34,20 @@
                     <Label Text="{Binding CurrentUser.Comment, Converter={StaticResource OptionalField}, StringFormat='Additional info: {0}'}" TextColor="#6963AD"/>
                 </VerticalStackLayout>
             </Frame>
+            <Button 
+                Text="Edit profile"
+                HorizontalOptions="Center"
+                MinimumWidthRequest="220"
+                BorderColor="#6963AD"
+                BorderWidth="1.25"
+                Command="{Binding EditClickedCommand}"/>
+            <Button 
+                Text="Delete profile and log out"
+                HorizontalOptions="Center"
+                MinimumWidthRequest="220"
+                BorderColor="Red"
+                TextColor="Red"
+                BorderWidth="1.25"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
