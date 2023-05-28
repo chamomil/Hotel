@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.Domain.Entities;
+using Hotel.UI.Pages;
 using Hotel.UI.Pages.Admin;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,21 @@ namespace Hotel.UI.ViewModels.Admin
                 }
             });
         }
+
+        [RelayCommand]
+        public async void BookingClicked(BookingData booking) => await GoToRoomDetails(booking);
+
+        public async Task GoToRoomDetails(BookingData booking)
+        {
+            IDictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "BookingData", booking },
+                { "IsConfirmation", false },
+                { "IsDeletion", true }
+            };
+            await Shell.Current.GoToAsync(nameof(RoomDetails), parameters);
+        }
+
         [RelayCommand]
         public async void MenuClicked() => await GoToMenu();
 
