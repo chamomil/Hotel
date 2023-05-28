@@ -34,10 +34,6 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="entities:BookingData">
                         <Frame Margin="5" WidthRequest="400"  BackgroundColor="White" BorderColor="#6963AD" MinimumHeightRequest="140">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type models:AdminBookingsViewModel}}, 
-                                    Path=ShowDetailsCommand}" CommandParameter="{Binding}"/>
-                            </Frame.GestureRecognizers>
                             <VerticalStackLayout Spacing="5">
                                 <Label Text="{Binding User.Login, StringFormat='User {0}'}" TextColor="#6963AD" FontSize="20"/>
                                 <Label Text="{Binding Room.Number, StringFormat='Room {0}'}" TextColor="#6963AD" FontSize="20"/>

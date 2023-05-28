@@ -18,6 +18,7 @@ namespace Hotel.UI
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
             Routing.RegisterRoute(nameof(EditProfile), typeof(EditProfile));
             Routing.RegisterRoute(nameof(AdminBookings), typeof(AdminBookings));
+            Routing.RegisterRoute(nameof(AdminMenu), typeof(AdminMenu));
         }
     }
 }

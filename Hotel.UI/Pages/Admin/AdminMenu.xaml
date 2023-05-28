@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Hotel.UI.ViewModels.Admin"
+             x:DataType="models:AdminMenuViewModel"
+             x:Class="Hotel.UI.Pages.Admin.AdminMenu">
+    <ScrollView BackgroundColor="White">
+        <VerticalStackLayout 
+            HorizontalOptions="Center"
+            Spacing="30"
+            Padding="0,90,0,30">
+            <Label 
+                Text="Menu"
+                TextColor="#6963AD"
+                HorizontalOptions="Center"
+                FontSize="Header"/>
+
+            <Button
+                Text="See bookings"
+                TextColor="#6963AD"
+                FontSize="Medium"
+                Command="{Binding SeeBookingsClickedCommand}"
+                BorderColor="#6963AD"
+                WidthRequest="300"
+                BorderWidth="1.5"/>
+
+            <Button
+                Text="Log Out"
+                TextColor="#6963AD"
+                FontSize="Medium"
+                Command="{Binding LogOutClickedCommand}"
+                BorderColor="#6963AD"
+                WidthRequest="300"
+                BorderWidth="1.5"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

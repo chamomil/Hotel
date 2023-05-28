@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Hotel.Application.Abstractions;
 using Hotel.Domain.Entities;
+using Hotel.UI.Pages.Admin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,7 +44,7 @@ namespace Hotel.UI.ViewModels.Admin
 
         public async Task GoToMenu()
         {
-            //await Shell.Current.GoToAsync(nameof(Menu));
+            await Shell.Current.GoToAsync(nameof(AdminMenu));
         }
     }
 }
